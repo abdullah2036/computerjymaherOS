@@ -1,0 +1,217 @@
+/* ============================================================
+   The phone. One thing on screen at a time.
+
+   On a laptop it renders inside a device frame so the other half of the idea
+   is visible without switching machines; on an actual phone the frame drops
+   away and the screen is the screen.
+   ============================================================ */
+
+.ios-stage {
+  block-size: 100%;
+  display: grid;
+  place-items: center;
+  background:
+    radial-gradient(80% 60% at 50% 0%, #232838 0%, transparent 60%),
+    linear-gradient(180deg, #14161f, #07080c);
+  padding: 16px;
+}
+
+.ios-device {
+  block-size: min(880px, 94vh);
+  aspect-ratio: 390 / 844;
+  padding: 11px;
+  border-radius: 52px;
+  background: linear-gradient(160deg, #3a3f48, #15171c 40%, #2a2e35);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.08),
+    0 40px 90px rgba(0, 0, 0, 0.6),
+    inset 0 0 0 2px rgba(0, 0, 0, 0.5);
+}
+
+.ios-screen {
+  position: relative;
+  block-size: 100%;
+  inline-size: 100%;
+  border-radius: 42px;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  isolation: isolate;
+}
+
+/* ---------- status bar ---------- */
+
+.ios-status {
+  flex: none;
+  block-size: 50px;
+  display: flex;
+  align-items: center;
+  padding-inline: 30px;
+  padding-block-start: 6px;
+  color: #fff;
+  font-size: 14.5px;
+  font-weight: 600;
+  position: relative;
+  z-index: 5;
+}
+.ios-status.dark { color: var(--ink); background: transparent; }
+.ios-time { font-variant-numeric: tabular-nums; letter-spacing: 0.01em; }
+.ios-island {
+  position: absolute;
+  inset-block-start: 10px;
+  inset-inline-start: 50%;
+  translate: -50% 0;
+  inline-size: 104px;
+  block-size: 28px;
+  border-radius: 16px;
+  background: #000;
+}
+.ios-meters { margin-inline-start: auto; display: flex; align-items: center; gap: 5px; }
+
+/* ---------- home screen ---------- */
+
+.ios-home {
+  flex: 1;
+  min-block-size: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 16px 18px 0;
+}
+.ios-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px 10px;
+  align-content: start;
+}
+.ios-icon { display: grid; justify-items: center; gap: 6px; }
+.ios-icon-art {
+  inline-size: 60px;
+  block-size: 60px;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 5px 14px rgba(0, 0, 0, 0.34);
+  transition: transform 0.14s var(--ease);
+}
+.ios-icon:active .ios-icon-art { transform: scale(0.92); }
+.ios-icon-l {
+  font-size: 11px;
+  font-weight: 500;
+  color: #fff;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.55);
+  text-align: center;
+  line-height: 1.2;
+}
+
+.ios-dots { margin-block: auto 10px; display: flex; gap: 6px; justify-content: center; }
+.ios-dots i { inline-size: 6px; block-size: 6px; border-radius: 50%; background: rgba(255, 255, 255, 0.34); }
+.ios-dots i.on { background: #fff; }
+
+.ios-dock {
+  flex: none;
+  margin: 0 12px 8px;
+  padding: 11px 8px;
+  border-radius: 30px;
+  background: rgba(255, 255, 255, 0.17);
+  backdrop-filter: blur(26px) saturate(180%);
+  -webkit-backdrop-filter: blur(26px) saturate(180%);
+  display: flex;
+  justify-content: space-around;
+  box-shadow: inset 0 0 0 0.5px rgba(255, 255, 255, 0.22);
+}
+
+.ios-bar {
+  flex: none;
+  block-size: 22px;
+  display: grid;
+  place-items: center;
+  touch-action: none;
+  cursor: grab;
+}
+.ios-bar::after {
+  content: '';
+  inline-size: 132px;
+  block-size: 5px;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.86);
+}
+.ios-bar.dark::after { background: rgba(0, 0, 0, 0.36); }
+
+/* ---------- an open app ---------- */
+
+.ios-app {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  background: var(--panel);
+  transform-origin: var(--ox, 50%) var(--oy, 80%);
+}
+.ios-app.in { animation: iosIn 0.34s var(--ease) both; }
+.ios-app.out { animation: iosOut 0.26s var(--ease) both; }
+
+@keyframes iosIn {
+  from { opacity: 0.4; transform: scale(0.16); border-radius: 40px; }
+  to { opacity: 1; transform: scale(1); border-radius: 0; }
+}
+@keyframes iosOut {
+  from { opacity: 1; transform: scale(1); border-radius: 0; }
+  to { opacity: 0.3; transform: scale(0.16); border-radius: 40px; }
+}
+
+.ios-app-h {
+  flex: none;
+  block-size: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-inline: 16px;
+  background: rgba(249, 249, 251, 0.92);
+  backdrop-filter: var(--blur);
+  -webkit-backdrop-filter: var(--blur);
+  border-block-end: 0.5px solid var(--line);
+  position: relative;
+}
+.ios-app-h h2 { font-size: 16px; font-weight: 600; }
+.ios-x {
+  position: absolute;
+  inset-inline-end: 12px;
+  inline-size: 30px;
+  block-size: 30px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 20px;
+  line-height: 1;
+  color: var(--ink-2);
+  background: rgba(0, 0, 0, 0.06);
+}
+
+.ios-app-b {
+  flex: 1;
+  min-block-size: 0;
+  display: flex;
+  overflow: hidden;
+  background: var(--panel);
+}
+.ios-app-b > * { flex: 1; min-inline-size: 0; min-block-size: 0; }
+
+/* a real phone gets the whole screen */
+@media (max-width: 819px), (max-height: 620px) {
+  .ios-stage { padding: 0; }
+  .ios-device {
+    inline-size: 100%;
+    block-size: 100%;
+    max-block-size: none;
+    aspect-ratio: auto;
+    padding: 0;
+    border-radius: 0;
+    box-shadow: none;
+    background: #000;
+  }
+  .ios-screen { border-radius: 0; }
+  .ios-status { padding-block-start: env(safe-area-inset-top, 0px); }
+  .ios-bar { padding-block-end: env(safe-area-inset-bottom, 0px); }
+}
