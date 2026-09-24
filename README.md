@@ -4,11 +4,19 @@
 *Computerjy Maher / كمبيوترجي ماهر* (fake tech store, no backend — a testbed for
 front-end pages).
 
+**Live:** https://abdullah2036.github.io/computerjymaherOS/ · jump straight in with [`#mac`](https://abdullah2036.github.io/computerjymaherOS/#mac) or [`#phone`](https://abdullah2036.github.io/computerjymaherOS/#phone)
+
+![Desktop with Services and Terminal open](docs/screenshots/desktop.jpg)
+
+| The door | The phone shell |
+|---|---|
+| ![Device picker](docs/screenshots/door.jpg) | ![iOS-style home screen](docs/screenshots/phone.jpg) |
+
 | Version | Idea |
 |---|---|
 | v1 ([ComputerjyMaher](https://github.com/abdullah2036/ComputerjyMaher)) | 2D cyberpunk / retro-terminal landing page |
 | v2 ([computerjymaher3d](https://github.com/abdullah2036/computerjymaher3d)) | First-person WebGL room → monitor portal → showroom (WASD) |
-| v3 ([computerjymaher-v3](https://github.com/abdullah2036/computerjymaher-v3)) | One continuous cinematic scene, scroll-only, camera on rails |
+| v3 ([computerjymaherV3](https://github.com/abdullah2036/computerjymaherV3)) | One continuous cinematic scene, scroll-only, camera on rails |
 | **v4 (this repo)** | Not a page at all — **a desktop you log into.** The site asks whether you're on a laptop or a phone, boots, and hands you either a macOS-style desktop or an iOS-style home screen. Services are windows. There's a shell. |
 
 The brand identity (name, products, services, bilingual copy, Jeddah / SAR /
@@ -158,3 +166,7 @@ right-click the desktop for wallpaper, Terminal and Spotlight.
 Every action that would cost money opens a WhatsApp chat instead. There's no
 server, no cart, and no stock — this is a mock brand and a design exercise, and
 the About window says so in both languages.
+
+---
+
+Built by **Abdullah Bokhary** · [Portfolio](https://abdullah.pageui.workers.dev/) · [LinkedIn](https://www.linkedin.com/in/abdullah-bokhary-840315326/) · [GitHub](https://github.com/abdullah2036)
